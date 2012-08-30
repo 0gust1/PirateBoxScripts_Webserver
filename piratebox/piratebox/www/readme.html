@@ -1,0 +1,48 @@
+ 
+<!doctype html>
+<html lang="en"> 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>PirateBox: About</title>
+  <meta name="description" content="Pirate Box">
+  <meta name="author" content="Yourself">
+
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="box">
+    <img src="img/piratebox-logo-small.png"/>
+    <h1 class="hidden">Pirate Box</h1>
+  </header>
+  <div class="main box" role="main">
+
+    <p>Inspired by pirate radio and the free culture movment, PirateBox is a self-contained mobile collaboration and file sharing device. PirateBox utilizes Free, Libre and Open Source software (FLOSS) to create mobile wireless file sharing networks where users can anonymously share images, video, audio, documents, and other digital content. </p>
+
+    <p>PirateBox is designed to be safe and secure. No logins are required and no user data is logged. The system is purposely not connected to the Internet in order to prevent tracking and preserve user privacy.</p>
+
+    <p>PirateBox was created by David Darts and is registered under a Free Art License (2011). To learn more about the project or to find out how to build your own PirateBox system, please visit <a href="http://wiki.daviddarts.com/piratebox">http://wiki.daviddarts.com/piratebox</a> </p>
+ 
+  </div><!--end main-->
+  
+  <footer>
+    <button type="button" id="btn_back">Back to the sharing page</button>
+  </footer>
+
+<script src="js/libs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+  
+  jQuery(document).ready(function($) {
+    // Stuff to do as soon as the DOM is ready. Use $() w/o colliding with other libs;
+    $("#btn_back").click(function(){
+      window.history.back();
+    });
+  });
+  
+</script>
+</body>
+</html>

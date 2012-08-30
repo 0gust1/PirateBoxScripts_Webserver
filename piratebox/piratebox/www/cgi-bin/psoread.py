@@ -6,16 +6,13 @@
 
 # Changed by Matthias Strubel / 2011-02-27 for piratebox-path
 
-css = open("style.css", 'r')
+#css = open("style.css", 'r')
 data = open("data.pso", 'r')
-stl = css.read()
+#stl = css.read()
 dat = data.read()
-css.close()
+#css.close()
 data.close()
 print "Content-type:text/html\r\n\r\n"
-print "<html><head><meta name='GENERATOR' content='PyShoutOut'><title>Shout-Out Data</title><style type='text/css'>"
-print stl
-print "</style></head>"
-print "<body>"
+print "<div class=\"shout\">"
 print dat
-print "</body>"
+print "</div>"

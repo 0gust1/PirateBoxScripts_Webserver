@@ -1,129 +1,141 @@
-<html>
+
+<!doctype html>
+<html lang="en"> 
 <head>
-    <LINK rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <title>PirateBox: Send a file</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>PirateBox: Send a file</title>
+  <meta name="description" content="Pirate Box">
+  <meta name="author" content="Yourself">
 
-<style type="text/css">
-<!--
-* {margin: 0; padding: 0;}
-body {text-align: left; font-size: 1.0em; font-family: sans-serif;}
-.box {padding-top:10px; padding-bottom:0px;}
-#message {text-align: left; width: 310px;}
-#sending {display: none;}
-#wrapform {height: 40px;}
-#progress {display: inline;  border-collapse: separate; empty-cells: show;
-           border-spacing: 10px 0; padding: 0; vertical-align: bottom;}
-#progress td {height: 10px; width: 13px; background-color: #eee;
-              border: 1px solid #aaa; padding: 0px;}
+  <meta name="viewport" content="width=device-width">
 
-#station {font-size: 50%; }
-
-
-.shoutbox_content {
-   border-top: 1px solid black;
-   border-bottom: 1px solid black;
-   margin-top:   1%;
-   position:   relative;
-   text-align: left;
-   width: 50%;
-   min-height:  50px;
-   height:      25%;
-   max-height:  300px;
-   overflow: hidden;
-}
-
---></style>
-
-<!--piratebox.lan-->
-
-<script type="text/javascript" src="jquery.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-           // do stuff when DOM is ready
-	   $.get('forum.html', function(data) {
-	          $('div#forum_link').html(data);
-	         } );
-	   $.get('station_cnt.txt', function(data) {
-	          $('div#station').html(data);
-	         } );
-       $('div#shoutbox').ajaxError(function() {
-                 $(this).text( "Triggered ajaxError handler on shoutbox" );
-               });
-
-       $("#sb_form").submit(function(event) {
-
-		     /* stop form from submitting normally */
-	         event.preventDefault();
-		     post_shoutbox();
-
-            });
-       display_shoutbox();
-   });
-
-  function refresh_shoutbox () {
-          $.get('/cgi-bin/psoread.py', function(data) {
-                       $('div#shoutbox').html(data);
-                   } );
-  }
-  function refresh_time_sb () {
-     // Refresh rate in milli seconds
-     mytime=setTimeout('display_shoutbox()', 10000);
-
-  }
-
-  function post_shoutbox () {
-     $.post("/cgi-bin/psowrte.py" , $("#sb_form").serialize())
-           .success(function() { refresh_shoutbox(); });
-     $('#sb_form_text').val("");
-  }
-
-
-  function display_shoutbox() {
-     refresh_shoutbox();
-     refresh_time_sb();
-  }
-
-  function fnGetDomain(url) {
-     return url.match(/:\/\/(.[^/]+)/)[1];
-  }
-
-</script>
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-<center>
+  <header class="box">
+    <img src="img/piratebox-logo-small.png"/>
+    <h1 class="hidden">Pirate Box</h1>
+  </header>
+  <div class="main" role="main">
 
-<div class="box"><img src="/piratebox-logo-small.png"/></div>
-<div id="message" class="box">
-<b>1.</b> Learn more about the project <a href="/.READ.ME.htm" target="_parent"><b>here</b></a>.<p>
-<b>2.</b> Click button below to begin sharing.</p>
-<b>3.</b> Browse and download files <a href="/Shared" target="_parent"><b>here</b></a>.<br>
-<div id="forum_link"></div>
-</div>
+    <div id="message" class="box">
+      <ol>
+        <li>
+          Learn more about the project <a href="readme.html">here</a>
+        </li>
+        <li>
+          Click button below to begin sharing.
+        </li>
+        <li>
+          Browse and download files <a href="Shared">here</a>.
+        </li>
+      </ol>
+      <div id="forum_link"></div>
+    </div>
 
+    <iframe  width='100%' frameBorder='0' src='http://piratebox.lan:8080'>
+      Your browser does not supprt Iframes.. If you want to upload something, follow this <a href='http://piratebox.lan:8080'>Link</a>
+    </iframe>
 
-<iframe  width='650' frameBorder='0' src='http://piratebox.lan:8080'>Your browser does not supprt Iframes.. If you want to upload something, follow this <a href='http://piratebox.lan:8080'>Link</a></iframe>
- <br />
+    <div class="shoutbox_content" id="shoutbox">
+      blah
 
-<div>
-<form method="POST" name="psowrte" id="sb_form" >
-Name:<input type="text" value="anonymous" name="name" size="10">&nbsp;&nbsp; Message:<input type="text" name="data" size="20" id='sb_form_text' >&nbsp;&nbsp;
-<br /><b>Color:</b> Default<input type="radio" value="def" name="color" checked> |
-<font color="#0000FF">Blue</font><input type="radio" value="blue" name="color">
-| <font color="#008000">Green</font><input type="radio" value="green" name="color">
-| <font color="#FF8040">Orange</font><input type="radio" value="orange" name="color">
-| <font color="#FF0000">Red</font><input type="radio" value="red" name="color"></p>
-<input type="submit" value="Send" name="submit"  /><br>
-</form>
+    </div>
 
-</div>
+    <div>
+        <form method="POST" name="psowrte" id="sb_form">
+          <h3>Post a message : </h3>
+          <ul>
+            <li>
+              <label>Name: <input type="text" value="anonymous" id="name" name="name" size="10"/></label>
+            </li>
+            <li>
+              <label>Message: <input type="text" name="data" size="20" id='sb_form_text'/></label>
+            </li>
+            <li class="color_choice">
+              <fieldset>
+                <legend>Color :</legend>
+                <label for="color_default"><input type="radio" id="color_default" value="def" name="color" checked="checked"/>Default</label>
+                <label for="color_blue" style="color:#0000FF;"><input type="radio" id="color_blue" value="blue" name="color"/>Blue</label>
+                <label for="color_green" style="color:#008000;"><input type="radio" id="color_green" value="green" name="color"/>Green</label>
+                <label for="color_orange" style="color:#FF8040;"><input type="radio" id="color_orange" value="orange" name="color"/>Orange</label>
+                <label for="color_red" style="color:#FF0000;"><input type="radio" id="color_red" value="red" name="color"/>Red</label>
+              </fieldset>
+            </li>
+            <li>
+              <button type="submit" id="btn_shout">Send</button>
+            </li>
+          </ul>
+        </form>
+    </div>
 
+    <div id="station"></div>
+  </div><!--end main-->
+  
+  <footer>
 
-<div class="shoutbox_content" id="shoutbox"></div>
+  </footer>
 
+<script src="js/libs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+var piratebox ={
+        //****** url mapping
+        urls : {
+          shoutboxGet : "cgi-bin/psoread.py",
+          shoutboxPost : "cgi-bin/psowrte.py",
+        },
+        //************ functions
+        refresh_shoutbox:function() {
+              // $.get('cgi-bin/psoread.py', function(data) {
+              //              $('div#shoutbox').html(data);
+              //          });
+                $.get(piratebox.urls.shoutboxGet, function(data) {
+                           $('div#shoutbox').html(data);
+                       });
+        },
+        refresh_time_sb:function() {
+         // Refresh rate in milli seconds
+         mytime=setInterval('piratebox.refresh_shoutbox()', 10000);
+        },
+        post_shoutbox:function() {
+         $.post(piratebox.urls.shoutboxPost , $("#sb_form").serialize())
+               .success(function() { piratebox.refresh_shoutbox(); });
+         $('#sb_form_text').val("");
+        },
+        init_shoutbox:function () {
+           piratebox.refresh_shoutbox();
+           piratebox.refresh_time_sb();
+        },
+        fnGetDomain:function (url) {
+           return url.match(/:\/\/(.[^/]+)/)[1];
+        }
+      };
 
-<div id="station"></div>
+  $(document).ready(function() {
+         // do stuff when DOM is ready
 
-</center>
-</body></html>
+         //get the forum
+         $.get('forum.html', function(data) {
+              $('div#forum_link').html(data);
+             } );
+         $.get('station_cnt.txt', function(data) {
+              $('div#station').html(data);
+             } );
+         $('div#shoutbox').ajaxError(function() {
+                   $(this).text( "Triggered ajaxError handler on shoutbox" );
+          });
+
+         $("#sb_form").submit(function(event) {
+           /* stop form from submitting normally */
+           event.preventDefault();
+           piratebox.post_shoutbox();
+          });
+
+         piratebox.init_shoutbox();
+     });
+</script>
+</body>
+</html>
