@@ -82,7 +82,7 @@
 <script src="js/libs/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 var piratebox ={
-        refreshFlag : true, //for stopping the refresh timer
+        refreshFlag : true, //flag for disabling shoutbox refresh
         //****** url mapping
         urls : {
           shoutboxGet : "cgi-bin/psoread.py",
@@ -90,14 +90,9 @@ var piratebox ={
         },
         //************ functions
         refresh_shoutbox:function() {
-              // $.get('cgi-bin/psoread.py', function(data) {
-              //              $('div#shoutbox').html(data);
-              //          });
-         //$("#btn_shout").attr("disabled","disabled"); //disabling post button
          if(piratebox.refreshFlag){
            $.get(piratebox.urls.shoutboxGet, function(data) {
-                           $('div#shoutbox').html(data);
-                           //$("#btn_shout").removeAttr("disabled");//enabling post button
+                           $('div#shoutbox').html(data);                  
                        });
          }
         },
@@ -107,9 +102,11 @@ var piratebox ={
         },
         post_shoutbox:function() {
          $.post(piratebox.urls.shoutboxPost, $("#sb_form").serialize(),function() { 
+          //refreshing and relaunching the periodic refresh 
               piratebox.refreshFlag = true;
-              //piratebox.refresh_shoutbox();//refresh
-              //refreshing and relaunching the periodic refresh 
+              piratebox.refresh_shoutbox();
+               }).error(function(){
+                piratebox.refreshFlag = true;
                });
          $('#sb_form_text').val("");
         },
