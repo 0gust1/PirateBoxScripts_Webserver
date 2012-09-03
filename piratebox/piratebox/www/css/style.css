@@ -109,25 +109,35 @@
     .shoutbox_content p{margin:0; padding:0; font-family: monospace;}
 
     .date		{ font-size: 0.8em; color: #666666;}
-	.name        { color:#444; }
-	.shout		{   }
-	.shout.def	{ color: #333 }
-	.shout.blue	{ color: #0000FF }
-	.shout.green	{ color: #008000 }
-	.shout.orange	{ color: #FF8040 }
-	.shout.red	{ color: #FF0000 }
+  	.name        { color:#444; }
+  	.shout		{   }
+  	.shout.def	{ color: #333 }
+  	.shout.blue	{ color: #0000FF }
+  	.shout.green	{ color: #008000 }
+  	.shout.orange	{ color: #FF8040 }
+  	.shout.red	{ color: #FF0000 }
 
 
     header, footer{text-align: center;}
+
     .main{width:70%; margin:0 auto 0 auto;}
 
-    #message{
-    	text-align: center; 
-    	font-size:1.5em; text-indent: 0.2em; line-height: 1.5em;
+    .logo{
+      display: inline-block;
+      vertical-align: middle;
     }
-    #message ol{margin: 0;padding: 0;}
 
-    #sb_form{}
+    #message{
+    	text-align: left; 
+    	font-size:1.5em; text-indent: 0.2em; 
+      line-height: 1em;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    #message ol{margin: 0;padding: 0; list-style-position: inside;}
+    #message li{margin: 0.6em 0 0.6em 0;padding: 0;}
+
+    #sb_form{}	
     #sb_form h3{display: inline-block;vertical-align: top;}
     #sb_form ul{display: inline-block;}
     #sb_form li{display: inline-block;}
@@ -138,7 +148,8 @@
     #sb_form .color_choice fieldset label{display:inline-block; margin:0 1em 0 0;}
     #sb_form .color_choice fieldset label input{display:inline-block; margin:0 0.5em 0 0;}
 
-    
+
+  
     /* =============================================================================
        Media Queries
        ========================================================================== */
