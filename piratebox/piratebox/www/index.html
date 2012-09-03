@@ -82,6 +82,7 @@
 <script src="js/libs/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 var piratebox ={
+        refreshFlag : true, //for stopping the refresh timer
         //****** url mapping
         urls : {
           shoutboxGet : "cgi-bin/psoread.py",
@@ -92,22 +93,29 @@ var piratebox ={
               // $.get('cgi-bin/psoread.py', function(data) {
               //              $('div#shoutbox').html(data);
               //          });
-                $.get(piratebox.urls.shoutboxGet, function(data) {
+         //$("#btn_shout").attr("disabled","disabled"); //disabling post button
+         if(piratebox.refreshFlag){
+           $.get(piratebox.urls.shoutboxGet, function(data) {
                            $('div#shoutbox').html(data);
+                           //$("#btn_shout").removeAttr("disabled");//enabling post button
                        });
+         }
         },
         refresh_time_sb:function() {
          // Refresh rate in milli seconds
-         mytime=setInterval('piratebox.refresh_shoutbox()', 10000);
+        setInterval('piratebox.refresh_shoutbox()', 10000);
         },
         post_shoutbox:function() {
-         $.post(piratebox.urls.shoutboxPost , $("#sb_form").serialize())
-               .success(function() { piratebox.refresh_shoutbox(); });
+         $.post(piratebox.urls.shoutboxPost, $("#sb_form").serialize(),function() { 
+              piratebox.refreshFlag = true;
+              //piratebox.refresh_shoutbox();//refresh
+              //refreshing and relaunching the periodic refresh 
+               });
          $('#sb_form_text').val("");
         },
         init_shoutbox:function () {
-           piratebox.refresh_shoutbox();
-           piratebox.refresh_time_sb();
+           //piratebox.refresh_shoutbox();//refresh
+           piratebox.refresh_time_sb();//launching periodic refresh
         },
         fnGetDomain:function (url) {
            return url.match(/:\/\/(.[^/]+)/)[1];
@@ -116,14 +124,16 @@ var piratebox ={
 
   $(document).ready(function() {
          // do stuff when DOM is ready
-
+         piratebox.init_shoutbox();
          //get the forum
          $.get('forum.html', function(data) {
               $('div#forum_link').html(data);
              } );
+         //get the station
          $.get('station_cnt.txt', function(data) {
               $('div#station').html(data);
              } );
+         //
          $('div#shoutbox').ajaxError(function() {
                    $(this).text( "Triggered ajaxError handler on shoutbox" );
           });
@@ -131,10 +141,12 @@ var piratebox ={
          $("#sb_form").submit(function(event) {
            /* stop form from submitting normally */
            event.preventDefault();
-           piratebox.post_shoutbox();
+           //clearInterval(piratebox.refreshFlag); //disabling refresh
+           piratebox.refreshFlag = false;
+           piratebox.post_shoutbox(); //post data
           });
 
-         piratebox.init_shoutbox();
+         
      });
 </script>
 </body>
