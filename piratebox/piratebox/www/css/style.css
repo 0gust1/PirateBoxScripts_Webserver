@@ -106,7 +106,17 @@
        max-height:  150px;
        overflow-y: scroll;
     }
-    .shoutbox_content p{margin:0; padding:0;}
+    .shoutbox_content p{margin:0; padding:0; font-family: monospace;}
+
+    .date		{ font-size: 0.8em; color: #666666;}
+	.name        { color:#444; }
+	.shout		{   }
+	.shout.def	{ color: #333 }
+	.shout.blue	{ color: #0000FF }
+	.shout.green	{ color: #008000 }
+	.shout.orange	{ color: #FF8040 }
+	.shout.red	{ color: #FF0000 }
+
 
     header, footer{text-align: center;}
     .main{width:70%; margin:0 auto 0 auto;}
@@ -114,7 +124,8 @@
     #message{text-align: center; font-size:1.5em; text-indent: 0.2em; line-height: 1.5em;}
 
     #sb_form{}
-    #sb_form ul{}
+    #sb_form h3{display: inline-block;vertical-align: top;}
+    #sb_form ul{display: inline-block;}
     #sb_form li{display: inline-block;}
     #sb_form li label{display: block;}
     #sb_form li label input{display: block;}
@@ -123,15 +134,7 @@
     #sb_form .color_choice fieldset label{display:inline-block; margin:0 1em 0 0;}
     #sb_form .color_choice fieldset label input{display:inline-block; margin:0 0.5em 0 0;}
 
-    .date		{ font-size: 0.8em; color: #666666; font-family:Tahoma }
-	.name        { font-family:Tahoma; color:#444; }
-	.shout		{ font-family: monospace;  }
-	.shout.def	{ color: #333 }
-	.shout.blue	{ color: #0000FF }
-	.shout.green	{ color: #008000 }
-	.shout.orange	{ color: #FF8040 }
-	.shout.red	{ color: #FF0000 }
-
+    
     /* =============================================================================
        Media Queries
        ========================================================================== */
