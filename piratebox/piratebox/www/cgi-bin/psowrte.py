@@ -6,7 +6,7 @@
 
 import cgi, datetime, os, re
 print "Content-type:text/html\r\n\r\n"
-datafile = open("data.pso", 'r+')
+datafile = open("chat.html", 'r+')
 values = cgi.FieldStorage()
 if values.has_key("name"):
   name = values["name"].value
@@ -23,8 +23,8 @@ curdate = datetime.datetime.now()
 old = datafile.read()
 datafile.truncate(0)
 datafile.close()
-datafile = open("data.pso", 'r+')
-datafile.write("<date>" + curdate.strftime("%H:%M:%S") + "</date>&nbsp;&nbsp;<name>" + name + ":</name>&nbsp;&nbsp;&nbsp;<data class='" + color + "'>" + data + "</data>\n" + old)
+datafile = open("chat.html", 'r+')
+datafile.write("<p><span class='date'>" + curdate.strftime("%H:%M:%S") + "</span><span class='name'>" + name + " : </span><span class='shout " + color + "'>" + data + "</span></p>\n" + old)
 datafile.close()
 #print """<html><head><meta http-equiv="refresh" content="0;url=/cgi-bin/psoread.py"></head><body>Reading...</body></html>"""
 print """<strong>ok</strong>"""

@@ -102,10 +102,11 @@
        border-bottom: 1px solid #777;
        text-align: left;
        min-height:  50px;
-       height:      25%;
-       max-height:  300px;
-       overflow: hidden;
+       height:      25%%;
+       max-height:  150px;
+       overflow-y: scroll;
     }
+    .shoutbox_content p{margin:0; padding:0;}
 
     header, footer{text-align: center;}
     .main{width:70%; margin:0 auto 0 auto;}
@@ -122,14 +123,14 @@
     #sb_form .color_choice fieldset label{display:inline-block; margin:0 1em 0 0;}
     #sb_form .color_choice fieldset label input{display:inline-block; margin:0 0.5em 0 0;}
 
-    date		{ font-size: 0.8em; color: #666666; font-family:Tahoma }
-	name        { font-family:Tahoma; color:#444; }
-	data		{ font-family: monospace;  }
-	data.def	{ color: #333 }
-	data.blue	{ color: #0000FF }
-	data.green	{ color: #008000 }
-	data.orange	{ color: #FF8040 }
-	data.red	{ color: #FF0000 }
+    .date		{ font-size: 0.8em; color: #666666; font-family:Tahoma }
+	.name        { font-family:Tahoma; color:#444; }
+	.shout		{ font-family: monospace;  }
+	.shout.def	{ color: #333 }
+	.shout.blue	{ color: #0000FF }
+	.shout.green	{ color: #008000 }
+	.shout.orange	{ color: #FF8040 }
+	.shout.red	{ color: #FF0000 }
 
     /* =============================================================================
        Media Queries

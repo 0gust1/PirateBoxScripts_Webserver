@@ -85,14 +85,21 @@ var piratebox ={
         refreshFlag : true, //flag for disabling shoutbox refresh
         //****** url mapping
         urls : {
-          shoutboxGet : "cgi-bin/psoread.py",
+          shoutboxGet : "cgi-bin/chat.html",
           shoutboxPost : "cgi-bin/psowrte.py",
         },
         //************ functions
         refresh_shoutbox:function() {
          if(piratebox.refreshFlag){
            $.get(piratebox.urls.shoutboxGet, function(data) {
-                           $('div#shoutbox').html(data);                  
+                           $('div#shoutbox').html(data);
+                           var newscrollHeight = $("#shoutbox").prop("scrollHeight") - 20;
+
+                            if($("#shoutbox").prop("scrollHeight") - ($("#shoutbox").scrollTop() + $("#shoutbox").height()) < 50){
+                              //Autoscroll to bottom of div
+                            $("#shoutbox").animate({ scrollTop: newscrollHeight }, 'normal'); 
+                            }
+
                        });
          }
         },
@@ -111,7 +118,7 @@ var piratebox ={
          $('#sb_form_text').val("");
         },
         init_shoutbox:function () {
-           //piratebox.refresh_shoutbox();//refresh
+           piratebox.refresh_shoutbox();//refresh
            piratebox.refresh_time_sb();//launching periodic refresh
         },
         fnGetDomain:function (url) {
