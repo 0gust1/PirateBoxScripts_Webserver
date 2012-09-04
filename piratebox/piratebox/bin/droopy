@@ -172,9 +172,7 @@ userinfo = '''
 
 maintmpl = '''<html><head><LINK rel="shortcut icon" href="http://%(hostname)s:8001/favicon.ico" type="image/x-icon" /><title>%(maintitle)s</title>
 ''' + style + '''
-<center>
-''' + userinfo + '''
-<script language="JavaScript">
+<script type="text/javascript">
 function swap() {
    document.getElementById("form").style.display = "none";
    document.getElementById("sending").style.display = "block";
@@ -202,6 +200,7 @@ function onunload() {
 }
 </script></head>
 <body>
+''' + userinfo + '''
 %(linkurl)s
 <div id="wrapform">
   <div id="form" class="box">
@@ -217,9 +216,6 @@ function onunload() {
     </tr></table>
   </div>
 </div>
-
-%(pb_chat)s 
-
 </body></html>
 '''
 
@@ -227,7 +223,6 @@ successtmpl = '''<html><head><LINK rel="shortcut icon" href="http://%(hostname)s
 ''' + style + '''
 </head>
 <body>
-<center>
 ''' + userinfo + '''
 <div id="wrapform">
   <div class="box">
@@ -235,10 +230,6 @@ successtmpl = '''<html><head><LINK rel="shortcut icon" href="http://%(hostname)s
     <a href="/"> %(another)s </a>
   </div>
 </div>
-
-%(pb_chat)s
-
-</center>
 </body>
 </html>
 '''
@@ -247,7 +238,6 @@ errortmpl = '''<html><head><LINK rel="shortcut icon" href="http://%(hostname)s:8
 ''' + style + '''
 </head>
 <body>
-<center>
 ''' + userinfo + '''
 <div id="wrapform">
   <div class="box">
@@ -255,10 +245,6 @@ errortmpl = '''<html><head><LINK rel="shortcut icon" href="http://%(hostname)s:8
     <a href="/"> %(retry)s </a>
   </div>
 </div>
-
-%(pb_chat)s
-
-</center>
 </body>
 </html>
 ''' 
